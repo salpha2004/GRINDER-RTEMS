@@ -1,0 +1,3 @@
+[submodule "GRINDER"]
+	path = GRINDER
+	url = https://github.com/DEEDS-TUD/GRINDER
