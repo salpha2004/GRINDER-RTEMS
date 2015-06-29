@@ -1,0 +1,88 @@
+diff --git a/.gitignore b/.gitignore
+index 9e0f99c..67616d1 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -5,8 +5,9 @@
+ .project
+ .cproject
+ 
+-# log files
++# log and bash scripts
+ *.log
++*.sh
+ 
+ # build files
+ target
+diff --git a/server/core/pom.xml b/server/core/pom.xml
+index 666fdd0..1401d74 100644
+--- a/server/core/pom.xml
++++ b/server/core/pom.xml
+@@ -116,9 +116,10 @@
+ 		</dependency>
+ 
+ 		<dependency>
+-			<groupId>de.tu-darmstadt.informatik.deeds</groupId>
+-			<artifactId>grinder.experiments.android_fi</artifactId>
++			<groupId>de.grinder.rtems</groupId>
++			<artifactId>grinder-rtems</artifactId>
+ 			<version>0.0.1-SNAPSHOT</version>
+ 		</dependency>
++
+ 	</dependencies>
+ </project>
+diff --git a/server/core/src/main/java/de/grinder/Grinder.java b/server/core/src/main/java/de/grinder/Grinder.java
+index c2430c4..7e093df 100644
+--- a/server/core/src/main/java/de/grinder/Grinder.java
++++ b/server/core/src/main/java/de/grinder/Grinder.java
+@@ -1,6 +1,6 @@
+ package de.grinder;
+ 
+-import de.grinder.android_fi.EmulatedAndroid;
++import de.grinder.rtems.QemuAbstraction;
+ import de.grinder.database.Database;
+ import de.grinder.executor.Executor;
+ import de.grinder.util.cue.CUEAbstractionRegistry;
+@@ -23,7 +23,7 @@ public class Grinder {
+      * CUEAbstraction interface.
+      */
+     final CUEAbstractionRegistry registry = CUEAbstractionRegistry.getInstance();
+-    registry.register(EmulatedAndroid.class);
++    registry.register(QemuAbstraction.class);
+   }
+ 
+   /**
+diff --git a/server/ext/database/src/main/resources/META-INF/persistence.xml b/server/ext/database/src/main/resources/META-INF/persistence.xml
+index 9d62a64..61cf6a5 100644
+--- a/server/ext/database/src/main/resources/META-INF/persistence.xml
++++ b/server/ext/database/src/main/resources/META-INF/persistence.xml
+@@ -12,7 +12,7 @@
+ 
+ 			<!-- MySQL Database for production -->
+ 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/grinder" />
++			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/grinder" />
+ 			<property name="javax.persistence.jdbc.user" value="grinder" />
+ 			<property name="javax.persistence.jdbc.password" value="grinder" />
+ 
+diff --git a/server/ext/rest/src/main/java/de/grinder/Grinder.java b/server/ext/rest/src/main/java/de/grinder/Grinder.java
+index 2e8ffec..167c614 100644
+--- a/server/ext/rest/src/main/java/de/grinder/Grinder.java
++++ b/server/ext/rest/src/main/java/de/grinder/Grinder.java
+@@ -9,7 +9,7 @@ import org.restlet.Restlet;
+ import org.restlet.data.Protocol;
+ import org.restlet.routing.Router;
+ 
+-import de.grinder.android_fi.EmulatedAndroid;
++import de.grinder.rtems.QemuAbstraction;
+ import de.grinder.util.cue.CUEAbstractionRegistry;
+ 
+ /**
+@@ -45,7 +45,7 @@ public class Grinder extends Application {
+      * Register cue abstraction.
+      */
+     CUEAbstractionRegistry registry = CUEAbstractionRegistry.getInstance();
+-    registry.register(EmulatedAndroid.INFO);
++    registry.register(QemuAbstraction.INFO);
+ 
+     try {
+       Component component = new Component();

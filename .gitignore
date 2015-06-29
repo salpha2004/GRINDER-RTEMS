@@ -1,0 +1,10 @@
+GRINDER/
+
+# log files
+*.log
+
+# build files
+target
+Debug
+*.o
+*.exe
