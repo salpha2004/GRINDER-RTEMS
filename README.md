@@ -3,9 +3,9 @@
 This repository is an extension to [GRINDER] generic fault injection framework to support [RTEMS].
 
 Hints:
-  - GRINDER should be used a Git Submodule. This is because GRINDER gets updated and this way facilitates merging new changes to your GRINDER submodule.
-  - Apply grinder-rtems.patch to modify/extend GRINDER to support RTEMS.
-  - GRINDER is a Maven project. Apache Maven 3.2.5 has been tested and is working.
+  - GRINDER should be used as a Git Submodule. This is because GRINDER gets updated and this way facilitates merging new changes to your GRINDER submodule.
+  - Apply GRINDER.patch to GRINDER directory.
+  - GRINDER is a Maven project. Java 7u21 and Apache Maven 3.2.5 has been tested and is working.
   - You can make and run GRINDER as follows:
 ```sh
 GRINDER$ mvn clean
