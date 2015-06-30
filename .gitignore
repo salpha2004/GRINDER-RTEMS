@@ -8,3 +8,5 @@ target
 Debug
 *.o
 *.exe
+
+pop-db
