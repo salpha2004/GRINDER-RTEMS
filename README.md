@@ -6,7 +6,9 @@ GRINDER should be used as a Git Submodule. This is because GRINDER gets updated 
 
 #### Build Instructions
 **1.** Get Maven and JDK (Maven 3.2.5 and JDK 7u21 has been tested and is working).
+
 **2.** Get MySQL Server.
+
 **3.** Run MySQL Server and create a user and a database:
 ```sh
 bash$ mysql -u root
