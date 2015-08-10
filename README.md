@@ -9,13 +9,21 @@ GRINDER should be used as a Git Submodule. This is because GRINDER gets updated 
 
 **2.** Get MySQL Server.
 
-**3.** Run MySQL Server and create a user and a database:
+**3.** Run MySQL Server and create a user and a database (assuming there is no password for user *root*):
 ```sh
 bash$ mysql -u root
 mysql> create user 'grinder'@'localhost' identified by 'grinder';
 mysql> grant all privileges on *.* to 'grinder'@'localhost';
 mysql> create database grinder;
 mysql> quit;
+```
+**4.** Clone grinder-rtems repository:
+```sh
+bash$ git clone https://github.com/salpha2004/grinder-rtems.git
+bash$ cd grinder-rtems/GRINDER
+GRINDER$ git submodule add https://github.com/DEEDS-TUD/GRINDER
+GRINDER$ git submodule init
+GRINDER$ git submodule update
 ```
 **4.** Build grinder-rtems:
 ```sh

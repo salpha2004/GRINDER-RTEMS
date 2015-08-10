@@ -51,6 +51,8 @@ public class QemuAbstraction implements CUEAbstraction {
 			Campaign campaign0 = (Campaign)(GrinderClient.getGrinder().getDatabase().getCampaigns().toArray()[0]);
 			if (campaign0 != null) {
 				/* get the first test case (in the first campaign). */
+				/* ExperimentRun provides a TCP connection to GRINDER Server
+				 * in order to store the test results back to DB. */
 				ExperimentRun experiment = new ExperimentRun (campaign0.getTestCases().get(0), campaign0);
 				/* get image under test's path from the test case.
 				 * this value has been initialized manually via
